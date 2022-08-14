@@ -1,0 +1,49 @@
+<div class="modal fade" id="staticBackdrop-category" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Thêm Danh Mục</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="categoryForm" (ngSubmit)="addCategory()" >
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <input type=color value="{{color}}" formControlName="color">
+            <input type="text" class="form-control" placeholder="Tên loại" aria-label="Username"
+                   aria-describedby="basic-addon1" style="margin-left: 17px" formControlName="name">
+          </div>
+          <div class="input-group mb-3">
+            <input type="textarea" class="form-control" placeholder="Ghi chú" aria-label="Username"
+                   aria-describedby="basic-addon1" style="margin-left: 60px; height: 90px;" formControlName="note">
+          </div>
+          <div class="input-group mb-3" style="margin-top: 30px;margin-left: 15%">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="1" formControlName="status">
+              <img
+                src="https://previews.123rf.com/images/izakowski/izakowski1301/izakowski130100082/17325761-%E7%8F%BE%E9%87%91%E3%81%A7%E9%87%91%E3%81%AE%E8%A2%8B%E3%82%92%E5%B9%B8%E3%81%9B%E3%81%AA%E7%94%B7%E3%82%84%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%9E%E3%83%B3%E3%81%AE%E6%BC%AB%E7%94%BB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg"
+                style="width: 20px;height: 20px; margin-right: 4px">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Thu
+              </label>
+            </div>
+            <div class="form-check" style="margin-left: 50px">
+              <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" checked value="2" formControlName="status">
+              <img
+                src="https://banner2.cleanpng.com/20180301/ade/kisspng-united-states-dollar-banknote-cartoon-vector-holding-dollar-5a979df432a946.2963528815198858122075.jpg"
+                style="width: 20px;height: 20px; margin-right: 5px">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Chi
+              </label>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button type="submit" class="btn_1 btn btn-primary" style="background: #4694e1; margin-left: 80%; margin-bottom: 15px" data-bs-dismiss="modal" aria-label="Close">Thêm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

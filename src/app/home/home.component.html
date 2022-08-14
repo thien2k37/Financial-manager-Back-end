@@ -1,0 +1,201 @@
+<app-side-bar></app-side-bar>
+<section class="main_content dashboard_part">
+  <app-nav-bar></app-nav-bar>
+  <div class="main_content_iner">
+    <div class="row">
+      <div class="col-6">
+        <div class="tab">
+          <button class="tablinks-chart" onclick="openCityChart(event, 'chart-collect')" style="width: 50%">Biểu
+            đồ thu
+          </button>
+          <button class="tablinks-chart" onclick="openCityChart(event, 'chart-spend')" style="width: 50%"
+                  id="defaultOpen">Biểu đồ chi
+          </button>
+        </div>
+        <div id="chart-collect" class="tabcontent-chart" style="margin-top: 10px">
+          <div id="divChart" style="height: 400px; width: 400px; margin-left: 15%">
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <div id="chart-spend" class="tabcontent-chart" style="margin-top: 10px">
+          <div id="divChart3" style="height: 400px; width: 400px; margin-left: 15%">
+            <canvas id="myChart3"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row" style="text-align: center;margin-top: 10px">
+          <h5>Thu nhập 6 tháng gần nhất</h5>
+        </div>
+        <div id="divChart2" style="margin-top: 20%">
+          <canvas id="myChart2"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main_content_iner">
+    <div class="container-fluid plr_30 body_white_bg pt_30">
+      <div class="row justify-content-center">
+        <div class="col-md-3" style="height: 100vh;">
+          <div class="email-sidebar">
+            <form [formGroup]="formSearch" (ngSubmit)="searchWallet()">
+              <h4 style="font-size: 16px;margin-top: 3px"><i class="fa-brands fa-searchengin"></i> Tìm kiếm</h4>
+              <hr style="margin-top: 20px; width: 80%;margin-left: 25px;color: #666666; font-size: 2px">
+              <ul class="text-start">
+                <li style="margin-top: 20px"><h5 style="margin-left: 10px"> Khoảng giá ({{nameCate}})
+                </h5></li>
+                <li>
+                  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"
+                              style="width: 90%; margin-left: 3%;margin-top: 15%"></ngx-slider>
+                </li>
+                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
+                  Từ ngày</h5>
+                </li>
+                <li>
+                  <input type="date" formControlName="startTime"/>
+                </li>
+                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
+                  Đến ngày</h5></li>
+                <input type="date" formControlName="endTime"/>
+                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
+                  Kiểu giao dịch</h5>
+                  <br>
+                  <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1"
+                         formControlName="status" checked
+                         style="margin-left: 30px">
+                  <img
+                    src="https://previews.123rf.com/images/izakowski/izakowski1301/izakowski130100082/17325761-%E7%8F%BE%E9%87%91%E3%81%A7%E9%87%91%E3%81%AE%E8%A2%8B%E3%82%92%E5%B9%B8%E3%81%9B%E3%81%AA%E7%94%B7%E3%82%84%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%9E%E3%83%B3%E3%81%AE%E6%BC%AB%E7%94%BB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg"
+                    style="width: 20px;height: 20px; margin-right: 4px;margin-left: 5px;">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Thu
+                  </label>
+                  <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" checked
+                         formControlName="status" value="2"
+                         style="margin-left: 40px">
+                  <img
+                    src="https://banner2.cleanpng.com/20180301/ade/kisspng-united-states-dollar-banknote-cartoon-vector-holding-dollar-5a979df432a946.2963528815198858122075.jpg"
+                    style="width: 20px;height: 20px; margin-right: 5px; margin-left: 5px">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Chi
+                  </label>
+                </li>
+              </ul>
+              <hr style="margin-top: -20px; width: 80%;margin-left: 25px;color: #545252; margin-bottom: 30px">
+              <ul class="text-start">
+                <li>
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                          style="margin-left: 10px;" (click)="resetForm()"><i
+                    class="fa-solid fa-trash"></i> Nhập lại
+                  </button>
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                          style="margin-left: 25px"><i class="fa-brands fa-searchengin" type="submit"></i> Tìm
+                  </button>
+                </li>
+              </ul>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="white_box QA_section" style="background: white">
+            <div class="white_box_tittle list_header">
+              <h4 style="margin-top: -5px"><i class="fa-solid fa-list"></i> Danh sách giao dịch</h4>
+              <div>
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                          (click)="export()" style="margin-right: 10px"><i
+                    class="fa-solid fa-floppy-disk"></i>Lưu
+                  </button>
+                <button data-bs-toggle="modal" style="margin-top: -30px" data-bs-target="#exampleModal1"
+                        class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"><i
+                  class="fa-solid fa-folder-plus"></i>Thêm mới giao dịch
+                </button>
+              </div>
+            </div>
+            <div class="QA_table">
+              <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+                <table class="table lms_table_active">
+                  <thead>
+                  <tr>
+                    <th scope="col">
+                      <label class="form-label primary_checkbox d-flex me-12 ">
+                        Thứ tự
+                      </label>
+                    </th>
+                    <th scope="col"></th>
+                    <th scope="col">Loại giao dịch</th>
+                    <th scope="col">Số tiền ({{nameCate}})</th>
+                    <th scope="col">Thời gian</th>
+                    <th scope="col"><i class="fa-solid fa-ellipsis"></i></th>
+                  </tr>
+                  </thead>
+                  <tbody
+                    *ngFor="let transaction of transactions |paginate: { itemsPerPage: 7, currentPage: p, totalItems: total }; let i = index">
+                  <tr>
+                    <th scope="row">
+                      <label class="form-label primary_checkbox d-flex me-12 ">{{i + 1}}</label>
+                    </th>
+                    <td><i class="far fa-star"></i></td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                          <svg width="20" height="20">
+                            <rect width="25" height="25"
+                                  [ngStyle]="{'fill':transaction.category.color,'stroke-width':'3px'}"/>
+                          </svg>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <p>{{transaction.category.name}}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p>{{transaction.totalSpent}}</p>
+                    </td>
+                    <td>
+                      <p class="nowrap">{{transaction.time}}</p>
+                    </td>
+                    <td class="form-check form-switch">
+                      <a (click)="isOpenHtml(i+1)"><i class="fa-solid fa-ellipsis"></i></a>
+                    </td>
+                  </tr>
+                  <tr id="{{i+1}}" [hidden]="isOpen">
+                    <td style="text-align: center" colspan="3">
+                      Ghi chú : {{transaction.note}}
+                    </td>
+                    <td style="text-align: center">
+                      <i class="fa-solid fa-x" style="color: red" (click)="confirmDelete(transaction.id)"></i>
+                    </td>
+                    <td style="text-align: center">
+                      <a data-bs-toggle="modal" data-bs-target="#exampleModal-edit"><i class="fa-solid fa-pen-to-square"
+                                                                                       style="color: green">
+                      </i></a>
+                    </td>
+                    <td></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <div class="dataTables_scroll" id="DataTables_Table_0_paginate"
+                     style="margin-left: 500px; margin-top: 20px">
+                  <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer_part">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 col-sm-12">
+            <div class="footer_iner text-center">
+              <p>2022 © Destroy - <a href="#"> Hủy diệt</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-edit-transaction [idEdit]="idEdit"></app-edit-transaction>
+<app-add-transaction></app-add-transaction>

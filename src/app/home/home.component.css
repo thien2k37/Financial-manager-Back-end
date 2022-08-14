@@ -1,0 +1,81 @@
+input[type="date"]{
+  background-color: rgba(183, 205, 229, 0.25);
+  padding: 8px;
+  font-family: "Roboto Mono", monospace;
+  color: #676464;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 90%;
+  margin-left: 7px;
+}
+::-webkit-calendar-picker-indicator {
+  color: #9d9c9c;
+  background-color: #edeef1;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+#date {
+  background-color: white;
+  padding: 8px;
+  font-family: "Roboto Mono", monospace;
+  color: rgba(61, 60, 60, 0.96);
+  font-size: 15px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 90%;
+  margin-left: 7px;
+}
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  /*border: 1px solid #ccc;*/
+  background-color: #f1f1f1;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab {
+  background-color: white;
+}
+button:hover {
+  background-color: white;
+}
+
+.tab button.active {
+  background-color: #d0e1ef;
+}
+
+#chart-spend {
+  display:none;
+  padding: 6px 12px;
+  border: white;
+}
+
+#chart-collect{
+  display: none;
+  padding: 6px 12px;
+  border: white;
+}
+.topright {
+  float: right;
+  cursor: pointer;
+  font-size: 28px;
+}
+
+.topright:hover {color: red;}
